@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.utils import timezone
 
 def index_page(request: HttpRequest) -> HttpResponse:
-    context: dir[str:str] = {
+    context: dict[str, str] = {
         "time" : timezone.now(),
         "fuel" : request.GET.get("fuel", "100")
     }
@@ -14,7 +14,7 @@ def fuel_page(request: HttpRequest) -> HttpResponse:
     distance = int(request.GET.get("distance", 0))
     consumption = int(request.GET.get("consumption", 0))
 
-    context: dir[str:str] = {
+    context: dict[str, int] = {
         "distance" : distance,
         "consumption" : consumption,
         "needed_fuel" : distance * consumption  
