@@ -11,6 +11,10 @@ class Ship(models.Model):
 class FuelCalculation(models.Model):
     """Расчет топлива: хранит данные одного расчета"""
 
+    # Корабль, к которому относится расчет (связь 1:N, у одного корабля много расчетов)
+    # CASCADE: если удалить корабль, удалятся и все его расчеты
+    ship = models.ForeignKey(Ship, on_delete=models.CASCADE)
+
     # Расстояние полета (целое число, не меньше 0)
     distance = models.PositiveIntegerField()
     # Расход топлива на единицу расстояния
