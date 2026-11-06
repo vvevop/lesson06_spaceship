@@ -1,9 +1,11 @@
+from datetime import datetime
+
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.utils import timezone
 
 def index_page(request: HttpRequest) -> HttpResponse:
-    context: dict[str, str] = {
+    context: dict[str, str | datetime] = {
         "time" : timezone.now(),
         "fuel" : request.GET.get("fuel", "100")
     }
